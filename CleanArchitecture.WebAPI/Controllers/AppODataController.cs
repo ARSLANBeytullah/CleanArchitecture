@@ -24,10 +24,10 @@ namespace CleanArchitecture.WebAPI.Controllers
         }
 
         [HttpGet("employees")]
-        public async Task<IActionResult> GetAllEmployee(CancellationToken cancellationToken)
+        public async Task<IQueryable<EmployeeGetAllQueryResponse>> GetAllEmployee(CancellationToken cancellationToken)
         {
             var response = await sender.Send(new EmployeeGetAllQuery(), cancellationToken);
-            return Ok(response);
+            return response;
         }
     }
 }
