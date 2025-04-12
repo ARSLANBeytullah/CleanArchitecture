@@ -15,7 +15,4 @@ namespace CleanArchitecture.Domain.Employees
         Task UpdateAsync(Employee employee);
         Task DeleteAsync(Guid id);
     }
-    {
-
-    }
 }
