@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Domain.Employees;
 using CleanArchitecture.Infrastructure.Context;
 using CleanArchitecture.Infrastructure.Repository;
+using GenericRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,8 @@ namespace CleanArchitecture.Infrastructure
                 string connectionString = configuration.GetConnectionString("SqlServer")!;
                 options.UseSqlServer(connectionString);
             });
+
+            services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<ApplicationDbContext>());
 
             //services.AddScoped<IEmployeeRepository, EmployeeRepository>(); bu şekilde yazmak yerine aşağıdaki gibi yazabiliriz. --Scrutor
             services.Scan(opt => opt
